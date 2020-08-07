@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="products_overview"
+         class=" shadow-sm bg-white py-5 my-3 mx-3 px-3 rounded text-center overflow-hidden">
+        <div class="row">
+
+            {% for product in product_list %}
+                <div class="col-sm-3">
+
+
+                    <figure class="card card-product">
+
+                        <figcaption class="info-wrap">
+                            <h4 class="title">{{ product.title }}</h4>
+                            <div class="img-wrap"><img alt="{{ product.name }}" src={{ product.image }}></div>
+
+                            <p class="desc">Starting from Rs. {{ product.price }}</p>
+                        </figcaption>
+                        <div class="bottom-wrap text-center">
+                            <a href="{{ product.get_absolute_url }}" class="btn btn-sm btn-primary ">Find
+                                Deal</a>
+                        </div> <!-- bottom-wrap.// -->
+                    </figure>
+
+
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

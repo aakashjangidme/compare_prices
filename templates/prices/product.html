@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    {% include "partials/_navbar.html" %}
+
+    <div class="row position-relative overflow-hidden p-3 p-md-5 m-md-0 text-center bg-light">
+
+        <div class="col-md-4 col-xs-12">
+            <img src="{{ product.image }}"
+                 alt="{{ product.title }}" style="width: 75%; height: auto; max-height: 500px;">
+        </div>
+
+        <div class="col-md-8 col-xs-12 my-5 text-center ">
+            <h4 class=" display-4 font-weight-normal">{{ product.title }}
+            </h4>
+            <p class="lead font-weight-normal">Compare Refurbished & Pre-Owned {{ product.title }}</p>
+            <a class="btn btn-outline-secondary" href="#">Explore</a>
+        </div>
+
+    </div>
+
+    {#    ================================================#}
+    <section id="prices">
+        <h2 class="display-5 text-center mt-5">Best Deals</h2>
+        {% for product_info in product_info_list %}
+
+            <div
+                    class=" shadow bg-white py-5 my-3 mx-3 px-3 rounded text-center overflow-hidden">
+
+                <div class="row text-center">
+
+                    <div class="col-md-2 ">
+                        <img src={{ product_info.logo }}  alt="{{ product_info.name }}"
+                             style="width: 100px; height: auto; max-height: 100px;">
+                    </div>
+
+                    <div class=" col-md-6 text-center">
+                        <h4>{{ product_info.name }}</h4>
+                    </div>
+
+                    <div class="col-md-2 ">
+                        <h4 class="float-right">₹ {{ product_info.price }}</h4>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a href={{ product_info.url }} role="button"
+                           aria-pressed="true" class="btn btn-primary btn-lg active">Buy
+                            Now</a>
+                    </div>
+                </div>
+            </div>
+            </section>
+        {% endfor %}
+
+
+
+    {% include "partials/_footer.html" %}
+
+
+{% endblock %}
+
