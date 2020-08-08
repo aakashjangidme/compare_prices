@@ -37,7 +37,5 @@ def paytm_search(url):
         return data
 
 
-# with open('data2.json', 'w') as f:
-#     json.dump(data, f)
-
-# print(paytm_search(search_query))
+with open('data2.json', 'w') as f:
+    json.dump(data, f)
