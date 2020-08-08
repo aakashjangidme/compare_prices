@@ -23,7 +23,7 @@
     {#    ================================================#}
     <section id="prices">
         <h2 class="display-5 text-center mt-5">Best Deals</h2>
-        {% for product_info in product_info_list %}
+        {% for product_info in product.productdetail_set.all %}
 
             <div
                     class=" shadow bg-white py-5 my-3 mx-3 px-3 rounded text-center overflow-hidden">

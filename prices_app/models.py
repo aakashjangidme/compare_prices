@@ -28,3 +28,12 @@ class Product(models.Model):
         super().save(*args, **kwargs)
 
 
+class ProductDetail(models.Model):
+    product = models.ForeignKey(Product, default=1, verbose_name="Product", on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    price = models.FloatField(default=0)
+    url = models.CharField(max_length=200)
+    logo = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
