@@ -6,7 +6,7 @@ data = {}
 
 
 def scraper(ebay_url, paytm_url):
-   # ==========ebay========
+    # ==========ebay========
     ebay_logo = "https://upload.wikimedia.org/wikipedia/commons/4/48/EBay_logo.png"
     ebay_uri = ebay_url
     page = requests.get(ebay_uri, headers={"User-Agent": "Defined"})
@@ -17,7 +17,7 @@ def scraper(ebay_url, paytm_url):
     ebay_price = ebay_price.join(get_floating_list)
     ebay_title = soup.find("span", id="vi-lkhdr-itmTitl").get_text()
 
-    # ============paytm mall==========================
+    # ============paytm mall==========
     paytm_logo = "https://www.searchpng.com/wp-content/uploads/2019/02/paytm-Mall-Logo-PNG-768x243.png"
     paytm_uri = paytm_url
     page = requests.get(paytm_uri, headers={"User-Agent": "Defined"})
@@ -25,7 +25,7 @@ def scraper(ebay_url, paytm_url):
     paytm_price = soup.find("span", class_="_1V3w").get_text().replace(',', '')
     paytm_title = soup.find(class_="NZJI").get_text()
 
-    # print(paytm_product_img)
+    paytm_product_img = soup.find(class_="_3v_O")["src"]
 
     data['product_info'] = []
 
@@ -34,6 +34,7 @@ def scraper(ebay_url, paytm_url):
         'price': float(ebay_price),
         'url': ebay_uri,
         'logo': ebay_logo,
+        'image': paytm_product_img
 
     }
     paytm = {
@@ -41,13 +42,11 @@ def scraper(ebay_url, paytm_url):
         'price': float(paytm_price),
         'url': paytm_uri,
         'logo': paytm_logo,
+        'image': paytm_product_img
 
     }
 
     data['product_info'].append(paytm)
     data['product_info'].append(ebay)
-
-    # with open('data.json', 'w') as f:
-    #     json.dump(data, f)
 
     return data

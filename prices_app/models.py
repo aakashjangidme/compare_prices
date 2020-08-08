@@ -13,6 +13,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+# For slug URLs
 
     def get_absolute_url(self):  # get_absolute_url
         kwargs = {
@@ -21,6 +22,7 @@ class Product(models.Model):
         }
 
         return reverse('prices:product', kwargs=kwargs)
+# Auto slug with Name/Title.
 
     def save(self, *args, **kwargs):
         value = self.title
@@ -29,7 +31,8 @@ class Product(models.Model):
 
 
 class ProductDetail(models.Model):
-    product = models.ForeignKey(Product, default=1, verbose_name="Product", on_delete=models.CASCADE)
+    product = models.ManyToManyField(
+        Product, default=1, verbose_name="Product")
     name = models.CharField(max_length=200)
     price = models.FloatField(default=0)
     url = models.CharField(max_length=200)
